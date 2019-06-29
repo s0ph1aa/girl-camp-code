@@ -1,0 +1,9 @@
+#include <linkbot.h>
+
+double yPos;
+CLinkbotI robot;
+double radius =1.75;
+
+robot.playMelody(IceCream,1);
+
+delay(100000);

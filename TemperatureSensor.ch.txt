@@ -1,0 +1,54 @@
+#include <arduino.h>
+
+int sensorPin =A0,
+    sensorVal,
+    pinNumber;
+    
+double baselineTemp = 30.0,
+       voltage,
+       temperature;
+
+//sets pins 2-4 as outputs and sets them to 0 volts
+pinNumber =2;
+while (pinNumber <5) {
+	pinMode (pinNumber, OUTPUT);
+	digitalWrite (pinNumber, LOW);
+	pinNumber++;
+}
+
+while (1) {
+sensorVal = analogRead (sensorPin);
+printf ("Sensor Value: %d", sensorVal);
+
+voltage = (sensorVal / 1023.0)*5.0;
+printf (", Voltage: %.2lf", voltage);
+
+temperature = (voltage - 0.5)*100;
+printf (", degrees C: %.2lf\n", temperature);
+
+if (temperature < baselineTemp) {
+digitalWrite (2, LOW);
+digitalWrite (3, LOW);
+digitalWrite (4, LOW);
+}
+
+else if (temperature >= baselineTemp && temperature < (baselineTemp+2)){
+digitalWrite(2, HIGH);
+digitalWrite(3,LOW);
+digitalWrite(4, LOW);
+}
+
+else if (temperature >= (baselineTemp+2) && temperature < (baselineTemp +4)){
+digitalWrite(2, HIGH);
+digitalWrite(3, HIGH);
+digitalWrite(4, LOW);
+}
+
+else {
+digitalWrite(2, HIGH);
+digitalWrite(3, HIGH);
+digitalWrite(4, HIGH);
+}
+delay(2000);
+
+}

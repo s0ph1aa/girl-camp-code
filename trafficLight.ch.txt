@@ -1,0 +1,41 @@
+#include <arduino.h>
+
+pinMode (5, OUTPUT);//red
+pinMode (4, OUTPUT);//yellow
+pinMode (3, OUTPUT);//green
+pinMode (2, INPUT);
+ int x = 0;
+while (1){
+x = digitalRead(2);
+if (x == 0) {
+	digitalWrite (5, HIGH);
+	digitalWrite (4, LOW);
+	digitalWrite (3, LOW);
+}
+else {
+	digitalWrite (5, LOW);
+	digitalWrite (3, HIGH);
+	delay (3000);
+	digitalWrite (3, LOW);
+	digitalWrite (4, HIGH);
+	delay (1000);
+	digitalWrite (4, LOW);
+	digitalWrite (5, HIGH);
+}
+}
+
+
+
+
+/*while(1){
+	digitalWrite (3, HIGH);//green light
+	delay(3000);
+	digitalWrite (3,LOW);
+	digitalWrite (4, HIGH);//yellow light
+	delay(1000);
+	digitalWrite (4, LOW);
+	digitalWrite (5, HIGH);//red light
+	delay(3000);
+	digitalWrite (5, LOW);
+}
+*/

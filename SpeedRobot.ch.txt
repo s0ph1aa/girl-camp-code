@@ -1,0 +1,30 @@
+#include <arduino.h>
+#include <linkbot.h>
+
+CLinkbotI yennington;
+double radius =1.75;
+int potVal;
+double speed; 
+
+int potPin = A0;
+int ledPin = 3;
+pinMode(potPin, INPUT);
+pinMode(ledPin, OUTPUT);
+
+yennington.setSpeed(0, radius);
+yennington.driveForeverNB();
+
+while(1){
+    potVal = analogRead (potPin);
+    speed = (potVal/1023.0) * 12.0 - 6;
+    yennington.setSpeed(speed, radius);
+    
+    if(speed >= 0) {
+        digitalWrite (ledPin, HIGH);
+    }
+    
+    else{
+        digitalWrite(ledPin, LOW);
+    }
+    delay (100);
+}

@@ -1,0 +1,61 @@
+#include <arduino.h>
+
+int switchPin = 8,
+    led = 2,
+    currentSwitchState,
+    previousSwitchState = 0,
+    pinNumber,
+    previousTime,
+    currentTime,
+    interval = 2;
+    
+pinNumber = 2;
+while(pinNumber < 8) {
+	pinMode(pinNumber, OUTPUT);
+	digitalWrite(pinNumber, LOW);
+	pinNumber++;
+}
+
+pinMode(switchPin, INPUT);
+
+while(1) {
+	currentTime = millis();
+	if(((currentTime-previousTime)/1000)> interval) {
+		previousTime = currentTime;
+	digitalWrite(led, HIGH);
+	led++;
+	}
+	if(led==8)
+	{
+	digitalWrite (7, LOW);
+	delay(1000);
+	digitalWrite (7, HIGH);
+	delay (1000);
+	digitalWrite (7, LOW);
+	delay (1000);
+	digitalWrite (7, HIGH);
+	delay (1000);
+	
+	pinNumber =2;
+	while (pinNumber < 8){
+		digitalWrite(pinNumber, LOW);
+		pinNumber++;
+	}
+	led = 2;
+	previousTime= millis();
+}
+
+currentSwitchState = digitalRead (switchPin);
+
+if(currentSwitchState != previousSwitchState){
+pinNumber =2;
+while (pinNumber < 8){
+digitalWrite (pinNumber, LOW);
+pinNumber++;
+}
+led=2;
+previousTime = currentTime;
+}
+
+previousSwitchState = currentSwitchState;
+}

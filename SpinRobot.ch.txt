@@ -1,0 +1,30 @@
+#include <arduino.h>
+#include <linkbot.h>
+
+CLinkbotI yennington;
+
+int potVal;
+double angularSpeed = 0; 
+int potPin = A0;
+int ledPin = 3;
+
+pinMode(ledPin, OUTPUT);
+
+yennington.setJointSpeeds(angularSpeed, NaN, angularSpeed);
+yennington.moveForeverNB();
+
+while(1){
+    potVal = analogRead(potPin);
+    angularSpeed = (potVal / 1023.0) * 120.0 - 60;
+    
+    yennington.setJointSpeeds(angularSpeed, NaN, angularSpeed);
+    yennington.moveForeverNB();  
+    
+    if (angularSpeed < 0){
+        digitalWrite(ledPin, LOW);
+    }
+    else{
+        digitalWrite(ledPin, HIGH);
+    }
+    delay(100);
+}

@@ -1,0 +1,40 @@
+//file: blinkLED.ch
+//Make an LED blink
+//header file
+#include <arduino.h>
+
+//set LED pin to output mode
+pinMode(3, OUTPUT);
+
+//Write pin to HIGH mode, giving the pin 5 volts
+digitalWrite(3, HIGH);
+
+//Pause for a second
+delay(500);
+
+//Write pin 3 to LOW mode, giving the pin 0 volts
+digitalWrite(3, LOW);
+
+delay(500);
+
+digitalWrite(3, HIGH);
+
+delay(500);
+
+digitalWrite(3, LOW);
+
+delay(500);
+
+digitalWrite(3, HIGH);
+
+delay(500);
+
+digitalWrite(3, LOW);
+
+delay(500);
+
+digitalWrite(3, HIGH);
+
+delay(500);
+
+digitalWrite(3, LOW);

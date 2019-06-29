@@ -1,0 +1,33 @@
+#include <linkbot.h>
+#include <arduino.h>
+
+CLinkbotI bobert;
+
+double radius = 1.75;
+double speed = 5.0;
+
+int switchVal;
+int directionPin = 2;
+int ledPin = 3;
+pinMode (directionPin, INPUT);
+pinMode (ledPin, OUTPUT);
+
+bobert.driveForeverNB();
+
+while(1){
+	switchVal = digitalRead (directionPin);
+	
+	if(switchVal == HIGH){
+		speed = -speed;
+		bobert.setSpeed (speed, radius);
+		bobert.driveForeverNB();
+	}
+	if (speed >= 0){
+		digitalWrite(ledPin, HIGH);
+	}
+	else{
+		digitalWrite(ledPin, LOW);
+	}
+	delay(100);
+	
+}

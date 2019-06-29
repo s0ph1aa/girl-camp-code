@@ -1,0 +1,51 @@
+#include <arduino.h>
+
+int sensorPin =A0,
+    sensorVal,
+    pinNumber,
+    lightVal;
+    
+double baseline = 80.0;
+       
+
+//sets pins 2-4 as outputs and sets them to 0 volts
+pinNumber =2;
+while (pinNumber <5) {
+	pinMode (pinNumber, OUTPUT);
+	digitalWrite (pinNumber, LOW);
+	pinNumber++;
+}
+
+while (1) {
+sensorVal = analogRead (sensorPin);
+printf ("Sensor Value: %d", sensorVal);
+
+lightVal = (sensorVal/4.0);
+printf (", Light value: %d\n", lightVal);
+
+if (lightVal < baseline) {
+digitalWrite (2, LOW);
+digitalWrite (3, LOW);
+digitalWrite (4, LOW);
+}
+
+else if (lightVal >= baseline && lightVal < (baseline+20)){
+digitalWrite(2, HIGH);
+digitalWrite(3,LOW);
+digitalWrite(4, LOW);
+}
+
+else if (lightVal >= (baseline+20) && lightVal < (baseline +40)){
+digitalWrite(2, HIGH);
+digitalWrite(3, HIGH);
+digitalWrite(4, LOW);
+}
+
+else {
+digitalWrite(2, HIGH);
+digitalWrite(3, HIGH);
+digitalWrite(4, HIGH);
+}
+delay(2000);
+
+}
