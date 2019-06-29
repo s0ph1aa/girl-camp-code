@@ -1,0 +1,49 @@
+#include <arduino.h>
+
+pinMode (3, OUTPUT);
+
+//first s in sos
+digitalWrite (3, HIGH);
+delay(1000);
+digitalWrite (3, LOW);
+delay(1000);
+digitalWrite (3, HIGH);
+delay(1000);
+digitalWrite (3, LOW);
+delay(1000);
+digitalWrite (3, HIGH);
+delay (1000);
+digitalWrite (3, LOW);
+delay(1000);
+digitalWrite (3, HIGH);
+delay(1000);
+digitalWrite (3, LOW);
+delay (3000);
+
+//o in sos
+digitalWrite (3, HIGH);
+delay (3000);
+digitalWrite (3, LOW);
+delay (1000);
+digitalWrite (3, HIGH);
+delay(3000);
+digitalWrite (3, LOW);
+delay (1000);
+digitalWrite (3, HIGH);
+delay (3000);
+digitalWrite (3, LOW);
+delay (3000);
+
+//second s in sos
+digitalWrite (3, HIGH);
+delay (1000);
+digitalWrite (3, LOW);
+delay (1000);
+digitalWrite (3, HIGH);
+delay (1000);
+digitalWrite (3, LOW);
+delay(1000);
+digitalWrite (3, HIGH);
+delay(1000);
+digitalWrite (3, LOW);
+delay (3000);
